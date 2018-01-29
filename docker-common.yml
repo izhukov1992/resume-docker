@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+    nginx:
+        restart: always
+        image: nginx:1.11.6-alpine
+    django:
+        restart: always
+        build:
+            context: ./docker/django
+            dockerfile: Dockerfile
+    web:
+        restart: always
+        build:
+            context: ./docker/web
+            dockerfile: Dockerfile
