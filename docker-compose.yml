@@ -9,19 +9,19 @@ services:
             - 8000:8000
         volumes:
             - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-        volumes_from:
-            - backend
     backend:
         extends:
             file: docker-common.yml
             service: django
         expose:
             - 8000
-        command: "sh docker/django/django-entrypoint.sh"
+        entrypoint: 
+            - /django-entrypoint.sh
     frontend:
         extends:
             file: docker-common.yml
             service: web
         links:
             - backend
-        command: "sh docker/web/web-entrypoint.sh"
+        entrypoint:
+            - /web-entrypoint.sh
