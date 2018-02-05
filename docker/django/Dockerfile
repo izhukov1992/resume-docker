@@ -3,10 +3,10 @@ MAINTAINER Zhukov Ilya <izhukov1992@gmail.com>
 
 ENV PYTHONUNBUFFERED 1
 
-ADD ./django-entrypoint.sh /
+RUN mkdir /home/resume
+WORKDIR /home/resume
 
-RUN chmod +x /django-entrypoint.sh
+ADD django-entrypoint.sh .
+RUN chmod +x django-entrypoint.sh
 
 RUN git clone https://github.com/izhukov1992/resume-api.git
-
-WORKDIR /resume-api

@@ -1,12 +1,12 @@
 FROM node:9.4
 MAINTAINER Zhukov Ilya <izhukov1992@gmail.com>
 
-ADD ./web-entrypoint.sh /
+RUN mkdir /home/resume
+WORKDIR /home/resume
 
-RUN chmod +x /web-entrypoint.sh
+ADD web-entrypoint.sh .
+RUN chmod +x web-entrypoint.sh
 
 RUN npm install -g gulp
 
 RUN git clone https://github.com/izhukov1992/resume-frontend.git
-
-WORKDIR /resume-frontend

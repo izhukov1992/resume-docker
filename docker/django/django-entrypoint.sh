@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-git pull
+cd /home/resume/resume-api
+git fetch origin
+git reset --hard origin/master
+
 pip install -r requirements.txt
+pip install gunicorn
 python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
+python manage.py collectstatic --noinput
+
+gunicorn --bind unix:resume.sock resume.wsgi
