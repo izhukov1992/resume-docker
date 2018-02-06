@@ -5,14 +5,15 @@ services:
         extends:
             file: docker-common.yml
             service: web
-        entrypoint: ./web-entrypoint.sh
+        entrypoint: /web-entrypoint.sh
         volumes:
             - ui:/home/resume/resume-frontend
     backend:
         extends:
             file: docker-common.yml
             service: django
-        entrypoint: ./django-entrypoint.sh
+        entrypoint: /django-entrypoint.sh
+        env_file: ./docker/django/s3.env
         ports:
             - 8000:8000
         volumes:
